@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %}user-posts{% endblock %}</title>
+{% block content %}
+  <h1>Posts By {{ view.kwargs.username }}</h1>
+  {% for post in posts %}
+  <div class="card card-list blue-grey darken-1">
+    <div class="card-content white-text">
+       <div class="author">
+          <a href="{% url 'user-posts' post.author.username %}">
+             <h5 class="author-name"><img class="author-img" src="{% static 'images/profile.jpg' %}" alt="" height="40px" width="40px">
+                {{post.author}}</h5>
+          </a>
+             <small class="post-created_on">{{post.created_on}}</small>
+
+
+          </div>
+       <span class="card-title">{{post.title}}</span>
+       <p>{{post.content|slice:"200"}}</p>
+    </div>
+    <div class="Readmore-btn">
+       <a href="{% url 'post_detail' post.slug %}" class="waves-effect waves-light btn-small">Read More</a></div>
+
+  </div>
+  {% endfor %}
+{% endblock content %}

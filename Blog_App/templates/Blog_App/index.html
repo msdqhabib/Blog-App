@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="Blog-posts">
+   <div class="row">
+        
+           <div class="div-1">
+              <div class="col s12 m6 ">
+                 {% for post in post_list %}
+                      <div class="card card-list blue-grey darken-1">
+                        <div class="card-content white-text">
+                           <div class="author">
+                              <a href="{% url 'user-posts' post.author.username %}">
+                                 <h5 class="author-name"><img class="author-img" src="{{post.author.profile.image.url}}" alt="" height="40px" width="40px">
+                                    {{post.author}}</h5>
+                              </a>
+                                 <small class="post-created_on">{{post.created_on}}</small>
+              
+              
+                              </div>
+                           <span class="card-title">{{post.title}}</span>
+                           <p>{{post.content|slice:"200"}}</p>
+                        </div>
+                        <div class="Readmore-btn">
+                           <a href="{% url 'post_detail' post.slug %}" id="like" class="waves-effect waves-light btn-small">Read More</a></div>
+                       </div>
+                       <form action="{% url 'like' post.pk %}" method="POST" id="like-form">
+                        {% csrf_token %}
+                        <button type="submit",class='like-btn', name="post_id", value="{{post.id}}" class="btn waves-effect waves-light like_btn"><img src="{% static 'images/like.png' %}" alt="" height="20px" width="20px"> {{post.total_likes}}</button>
+                     </form>
+
+                     <!-- ....................................... -->
+                 {% endfor %}
+              </div>
+           </div>
+           <div class="div-2">
+              <div class="col m5">
+                    <div class="card card-sidebar">
+                      <div class="card-content black-text">
+                        <span class="card-title">About Us</span>
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                      </div>
+                      <div class="card-action">
+                        <div class="Readmore-btn_about"><a href="#" class="waves-effect waves-light btn-small">Read More</a>
+                      
+              
+                  </div>
+           </div>
+             </div>
+           </div>
+        </div>
+
+   </div>
+</div>
+{% endblock content %}
+
