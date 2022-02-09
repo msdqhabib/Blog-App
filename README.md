@@ -1,2 +1,2 @@
 Simple Blog App using django.
-Have a look live here -> https://blog-app-with-django.herokuapp.com/
+Have a look of live site here -> https://blog-app-with-django.herokuapp.com/
