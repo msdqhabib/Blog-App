@@ -82,9 +82,13 @@ WSGI_APPLICATION = 'Blog.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+       'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'dbk2u8lingpeg7',
+            'USER': 'dyspvkhywvjtxh',
+            'PASSWORD': 'cf3d1eda5ed3ba76a97b26dc4c1571894bed3b89ffe28b34b413961d7e645125',
+            'HOST': 'ec2-107-23-41-227.compute-1.amazonaws.com',
+            'PORT': '5432',
     }
 }
 
@@ -133,6 +137,9 @@ STATICFILES_DIR = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
